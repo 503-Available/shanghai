@@ -1,0 +1,336 @@
+{
+  "title": "상하이 가족여행 2026",
+  "subtitle": "상하이 미식 투어 2026",
+  "startDate": "2026-12-11",
+  "endDate": "2026-12-14",
+  "members": ["아빠", "엄마", "딸", "할아버지", "할머니"],
+  "updatedAt": "2026-11-07",
+
+  "days": [
+    {
+      "date": "2026-12-11",
+      "label": "Day 1",
+      "theme": "도착 · 루자쭈이 · 와이탄 야경",
+      "cover": { "image": "img/cover-day1.jpg", "label": "SHANGHAI · LUJIAZUI", "credit": "Denys Nevozhai / Unsplash" },
+      "weather": { "place": "상하이", "lat": 31.2304, "lon": 121.4737, "normalHigh": 11, "normalLow": 4 },
+      "items": [
+        { "time": "08:25", "type": "flight", "title": "인천 출발 (대한항공)", "placeId": "icn", "reservation": "done" },
+        { "time": "09:45", "type": "flight", "title": "푸둥공항 도착", "placeId": "pvg", "note": "입국 심사 약 1시간 · 내리면 와이파이 도시락부터 켜기" },
+        { "time": "11:00", "type": "move", "title": "예약 픽업 차량 → 호텔", "placeId": "pickup", "reservation": "required", "note": "약 50분 · 기사님이 이름 피켓 들고 도착장에서 대기" },
+        { "time": "12:00", "type": "hotel", "title": "호텔에 짐 맡기기", "placeId": "hotel", "reservation": "done" },
+        { "time": "12:30", "type": "food", "title": "점심: 베이징덕", "placeId": "sijiminfu", "reservation": "recommended", "note": "호텔에서 차로 약 10분" },
+        { "time": "14:00", "type": "sight", "title": "동방명주", "placeId": "pearl", "note": "정대광장에서 도보 약 5분" },
+        { "time": "15:30", "type": "hotel", "title": "체크인 · 휴식", "placeId": "hotel" },
+        { "time": "17:30", "type": "move", "title": "와이탄으로 이동", "note": "DiDi 6인승 · 강 건너 약 15분" },
+        { "time": "18:00", "type": "sight", "title": "와이탄 야경", "placeId": "bund", "note": "겨울엔 18:00 점등 · 강바람이 차가워요" },
+        { "time": "19:00", "type": "sight", "title": "난징루 보행가", "placeId": "nanjing" },
+        { "time": "19:45", "type": "food", "title": "저녁: 외할머니집 (항저우 가정식)", "placeId": "waipojia", "note": "난징루에서 차로 약 10분" },
+        { "time": "21:15", "type": "move", "title": "호텔로", "note": "DiDi 6인승 · 약 20분" }
+      ]
+    },
+    {
+      "date": "2026-12-12",
+      "label": "Day 2",
+      "theme": "임시정부 · 신톈디 · 우캉루 · 예원 야경",
+      "cover": { "image": "img/cover-day2.jpg", "label": "SHANGHAI · YUYUAN", "credit": "Timothée Gidenne / Unsplash" },
+      "weather": { "place": "상하이", "lat": 31.2304, "lon": 121.4737, "normalHigh": 11, "normalLow": 4 },
+      "items": [
+        { "time": "07:45", "type": "food", "title": "아침: 호텔 조식", "placeId": "hotel" },
+        { "time": "09:00", "type": "move", "title": "호텔 출발 → 임시정부 청사", "note": "DiDi 6인승 · 약 20분" },
+        { "time": "09:30", "type": "sight", "title": "대한민국 임시정부 청사", "placeId": "kpg", "note": "점심시간에 문을 닫을 수 있어 오전에 방문" },
+        { "time": "10:30", "type": "sight", "title": "신톈디 산책", "placeId": "xintiandi", "note": "임시정부에서 도보 약 5분" },
+        { "time": "11:30", "type": "food", "title": "점심: 광둥식 딤섬", "placeId": "diandoude", "note": "신톈디에서 도보 약 10분" },
+        { "time": "13:00", "type": "sight", "title": "톈쯔팡 골목", "placeId": "tianzifang", "note": "차로 약 10분 · 골목이 좁고 붐벼요" },
+        { "time": "14:30", "type": "sight", "title": "우캉루 · 우캉맨션", "placeId": "wukang", "note": "차로 약 15분 · 카페에서 쉬어 가기" },
+        { "time": "16:30", "type": "move", "title": "예원으로 이동", "note": "DiDi 6인승 · 약 25분" },
+        { "time": "17:00", "type": "sight", "title": "예원 상가 · 구곡교", "placeId": "yuyuan" },
+        { "time": "17:30", "type": "food", "title": "샤오롱바오 간식 (포장)", "placeId": "nanxiang", "note": "1층 포장 코너 · 배부르면 건너뛰기" },
+        { "time": "18:00", "type": "sight", "title": "예원 야경", "placeId": "yuyuan" },
+        { "time": "18:45", "type": "food", "title": "저녁: 양꼬치", "placeId": "henjiu", "note": "예원에서 차로 약 5~10분 · 도착 전 대기 등록" },
+        { "time": "20:15", "type": "move", "title": "호텔로", "note": "DiDi 6인승 · 약 20분" }
+      ]
+    },
+    {
+      "date": "2026-12-13",
+      "label": "Day 3",
+      "theme": "우전 수향마을 투어",
+      "cover": { "image": "img/cover-day3.jpg", "label": "WUZHEN · WATER TOWN", "credit": "Calvin Wong / Unsplash" },
+      "weather": { "place": "우전", "lat": 30.7457, "lon": 120.4876, "normalHigh": 11, "normalLow": 3 },
+      "items": [
+        { "time": "07:30", "type": "food", "title": "아침: 호텔 조식", "placeId": "hotel" },
+        { "time": "08:30", "type": "tour", "title": "투어 집합 (시간 확정 예정)", "placeId": "tour", "reservation": "done", "note": "집합 시간·장소는 바우처로 확인" },
+        { "time": "10:30", "type": "tour", "title": "우전 시자 (서쪽 마을)", "placeId": "wuzhen", "note": "이후 시간은 예상치 · 가이드 안내 우선" },
+        { "time": "18:30", "type": "move", "title": "상하이 도착 (예상)" },
+        { "time": "19:00", "type": "food", "title": "저녁: 카오위 (생선구이)", "placeId": "kaoyu", "note": "지점은 투어 도착 장소를 보고 확정 · 마늘 맛, 안 맵게" }
+      ]
+    },
+    {
+      "date": "2026-12-14",
+      "label": "Day 4",
+      "theme": "가벼운 아침 · 귀국",
+      "cover": { "image": "img/cover-day4.jpg", "label": "SHANGHAI · THE BUND", "credit": "Li Yang / Unsplash" },
+      "weather": { "place": "상하이", "lat": 31.2304, "lon": 121.4737, "normalHigh": 11, "normalLow": 4 },
+      "items": [
+        { "time": "08:00", "type": "food", "title": "아침: 생젠 · 더우장 (호텔 근처)", "placeId": "breakfast", "note": "가게는 출발 전 확정 예정" },
+        { "time": "09:30", "type": "hotel", "title": "체크아웃", "placeId": "hotel" },
+        { "time": "10:30", "type": "move", "title": "DiDi 6인승 → 푸둥공항", "placeId": "didi", "reservation": "recommended", "note": "전날 밤 예약 · 약 50분" },
+        { "time": "11:30", "type": "flight", "title": "대한항공 체크인", "placeId": "pvg", "note": "출발 2시간 30분 전" },
+        { "time": "12:30", "type": "food", "title": "공항에서 간단히 점심", "placeId": "pvg" },
+        { "time": "14:00", "type": "flight", "title": "인천행 출발", "placeId": "pvg", "reservation": "done" },
+        { "time": "17:10", "type": "flight", "title": "인천 도착", "placeId": "icn" }
+      ]
+    }
+  ],
+
+  "places": [
+    {
+      "id": "icn", "category": "transport", "name": "인천국제공항", "nameZh": "仁川国际机场",
+      "map": "仁川国际机场 第2航站楼", "tip": "대한항공은 제2여객터미널"
+    },
+    {
+      "id": "pvg", "category": "transport", "name": "상하이 푸둥국제공항", "nameZh": "上海浦东国际机场",
+      "address": "상하이시 푸둥신구 치창다다오", "addressZh": "上海市浦东新区 浦东国际机场",
+      "map": "上海浦东国际机场",
+      "tip": "터미널(T1/T2)은 출발 전 대한항공 앱에서 확인 · 두 터미널 사이는 무료 셔틀버스 · 출국 심사 후 면세점"
+    },
+    {
+      "id": "pickup", "category": "transport", "name": "공항 픽업 차량 (6~7인승)", "nameZh": "浦东机场接机",
+      "area": "푸둥공항 도착장 → 호텔",
+      "map": "上海浦东国际机场",
+      "tip": "클룩·트립닷컴에서 예약 · 짐은 큰 캐리어 2개 + 작은 캐리어 2개로 입력 · 항공편 번호를 넣으면 지연돼도 기다려 줘요",
+      "reservation": "required"
+    },
+    {
+      "id": "didi", "category": "transport", "name": "DiDi 6인승 (호텔 → 공항)", "nameZh": "滴滴 六座",
+      "area": "호텔 앞 → 푸둥공항",
+      "map": "上海浦东国际机场",
+      "tip": "알리페이 안 DiDi 미니프로그램 → 차종 '6座(6-Seater)' 선택 · 예약 기능으로 전날 밤 미리 예약 · 요금 약 150~200위안 · 어려우면 호텔 프런트에 차량 요청",
+      "reservation": "recommended"
+    },
+    {
+      "id": "hotel", "category": "hotel", "name": "디 이튼 호텔 상하이", "nameZh": "裕景大饭店",
+      "area": "푸둥 루자쭈이", "address": "상하이시 푸둥신구 푸둥다다오 535호",
+      "addressZh": "上海市浦东新区浦东大道535号 裕景大饭店",
+      "hours": "체크인·체크아웃 시간은 예약 확인서로 확인",
+      "map": "裕景大饭店 浦东大道535号",
+      "tip": "지하철 4·14호선 푸둥다다오역 7A/7B 출구 바로 앞 · 1층 이튼 카페 · 택시·DiDi 탈 때 이 화면을 보여 주세요",
+      "reservation": "done"
+    },
+
+    {
+      "id": "sijiminfu", "category": "food", "name": "사계민복 (베이징덕) 정대광장점", "nameZh": "四季民福烤鸭店 正大广场店",
+      "area": "루자쭈이 정대광장", "address": "상하이시 푸둥신구 루자쭈이시루 168호 정대광장",
+      "addressZh": "上海市浦东新区陆家嘴西路168号 正大广场 四季民福烤鸭店",
+      "price": "1인 약 150~200위안",
+      "map": "四季民福烤鸭店 正大广场",
+      "tip": "미쉐린 가이드 소개 · 껍질이 바삭한 베이징덕 · 오리 1마리면 5명이 맛보기 좋아요 · 층수는 쇼핑몰 안내판 확인 · 5인 예약 권장",
+      "reservation": "recommended"
+    },
+    {
+      "id": "pearl", "category": "sight", "name": "동방명주", "nameZh": "东方明珠广播电视塔",
+      "area": "루자쭈이", "address": "상하이시 푸둥신구 스지다다오 1호",
+      "addressZh": "上海市浦东新区世纪大道1号 东方明珠",
+      "hours": "9:00~21:00 (입장 마감 20:30)", "price": "입장권 종류별로 다름 · 온라인 예매가 저렴",
+      "tel": "021-5879-1888",
+      "map": "东方明珠广播电视塔",
+      "tip": "263m 전망대 유리 바닥이 인기 · 노인 할인 여부는 매표소에 여권 보여 주며 문의 · 대기 줄이 길면 오후 늦게"
+    },
+    {
+      "id": "bund", "category": "sight", "name": "와이탄 (황푸강 야경)", "nameZh": "外滩",
+      "area": "황푸구 강변", "address": "상하이시 황푸구 중산둥이루",
+      "addressZh": "上海市黄浦区中山东一路 外滩",
+      "hours": "조명 겨울(10~4월) 18:00~22:00", "price": "무료",
+      "map": "外滩观景平台",
+      "tip": "점등 30분 전에 가면 노을과 야경을 함께 볼 수 있어요 · 강 건너 루자쭈이 빌딩숲이 정면 · 사람이 많으니 일행과 만날 곳 정해 두기"
+    },
+    {
+      "id": "nanjing", "category": "sight", "name": "난징루 보행가", "nameZh": "南京东路步行街",
+      "area": "와이탄 ~ 인민광장", "address": "상하이시 황푸구 난징둥루",
+      "addressZh": "上海市黄浦区南京东路步行街",
+      "price": "무료",
+      "map": "南京东路步行街",
+      "tip": "약 1.2km 보행자 거리 · 부모님은 거리를 오가는 관광 꼬마열차를 타면 편해요 · 대백토 사탕은 제1식품점에서"
+    },
+    {
+      "id": "waipojia", "category": "food", "name": "외할머니집 (와이포지아) 정안 대열성점", "nameZh": "外婆家 静安大悦城店",
+      "area": "정안 대열성 7층", "address": "상하이시 징안구 시짱베이루 166호 대열성 7층",
+      "addressZh": "上海市静安区西藏北路166号 静安大悦城 7楼 外婆家",
+      "price": "요리 1개 약 20~80위안",
+      "map": "外婆家 静安大悦城",
+      "tip": "항저우 가정식 체인 · 동파육, 간장 닭, 마늘 새우, 연잎 닭 추천 · 두부 볶음(빨간 소스)은 매워요 · 저렴하고 양이 많아요 · 줄이 길면 입구 기계에서 번호표"
+    },
+
+    {
+      "id": "kpg", "category": "sight", "name": "대한민국 임시정부 청사", "nameZh": "大韩民国临时政府旧址",
+      "area": "신톈디 근처", "address": "상하이시 황푸구 마당루 306롱 4호",
+      "addressZh": "上海市黄浦区马当路306弄4号 大韩民国临时政府旧址",
+      "hours": "9:00~17:00 무렵 (점심 11:30~13:30 휴관한다는 정보 있음)", "price": "어른 20위안",
+      "map": "大韩民国临时政府旧址",
+      "tip": "2026년 9월 보수를 마치고 재개관 · 여권 지참 · 실내 사진 촬영 제한 구역 있음 · 좁은 계단이 있어 부모님은 천천히"
+    },
+    {
+      "id": "xintiandi", "category": "sight", "name": "신톈디", "nameZh": "新天地",
+      "area": "황푸구", "address": "상하이시 황푸구 타이창루 181롱",
+      "addressZh": "上海市黄浦区太仓路181弄 新天地",
+      "price": "무료",
+      "map": "上海新天地",
+      "tip": "옛 상하이 석고문 주택을 카페·상점으로 꾸민 거리 · 오전엔 한산해서 사진 찍기 좋아요"
+    },
+    {
+      "id": "diandoude", "category": "food", "name": "점도덕 (광둥식 딤섬) 중해환우회점", "nameZh": "点都德 中海环宇荟店",
+      "area": "신톈디 남쪽", "address": "상하이시 황푸구 황피난루 838롱 중해환우회 지하 1층",
+      "addressZh": "上海市黄浦区黄陂南路838弄 中海环宇荟 B1 点都德",
+      "price": "1인 약 100위안",
+      "map": "点都德 中海环宇荟",
+      "tip": "광저우 유명 딤섬 찻집 · 홍미창펀, 하가우(새우), 차슈바오, 파인애플빵, 유사바오 추천 · 쇼핑몰 안이라 깔끔해요 · 점심 피크엔 대기"
+    },
+    {
+      "id": "tianzifang", "category": "sight", "name": "톈쯔팡", "nameZh": "田子坊",
+      "area": "황푸구", "address": "상하이시 황푸구 타이캉루 210롱",
+      "addressZh": "上海市黄浦区泰康路210弄 田子坊",
+      "price": "무료",
+      "map": "田子坊",
+      "tip": "미로 같은 골목에 공방·카페·기념품 가게 · 사람이 많고 길이 좁아 일행을 놓치기 쉬워요 · 만날 곳 정하기"
+    },
+    {
+      "id": "wukang", "category": "sight", "name": "우캉루 · 우캉맨션", "nameZh": "武康路 武康大楼",
+      "area": "쉬후이구 옛 프랑스 조계", "address": "상하이시 쉬후이구 화이하이중루 1850호 (우캉맨션)",
+      "addressZh": "上海市徐汇区淮海中路1850号 武康大楼",
+      "price": "무료",
+      "map": "武康大楼",
+      "tip": "배 모양 건물 우캉맨션이 사진 명소 · 플라타너스 가로수길 산책 · 길가 카페에서 쉬어 가기"
+    },
+    {
+      "id": "yuyuan", "category": "sight", "name": "예원 · 예원 상가", "nameZh": "豫园",
+      "area": "황푸구 옛 시가지", "address": "상하이시 황푸구 안런제 218호",
+      "addressZh": "上海市黄浦区安仁街218号 豫园",
+      "hours": "정원은 오후 일찍 닫음 · 상가와 야경 조명은 저녁까지", "price": "상가·야경 무료 (정원은 유료)",
+      "map": "豫园",
+      "tip": "명나라 정원 · 저녁엔 처마 조명이 켜진 구곡교와 호심정이 사진 명소 · 사람이 아주 많으니 소지품 조심"
+    },
+    {
+      "id": "nanxiang", "category": "food", "name": "남상만두점 (샤오롱바오)", "nameZh": "南翔馒头店",
+      "area": "예원 안", "address": "상하이시 황푸구 위위안라오루 85호",
+      "addressZh": "上海市黄浦区豫园老路85号 南翔馒头店",
+      "map": "南翔馒头店 豫园",
+      "tip": "100년 넘은 샤오롱바오 가게 · 1층은 포장 전용(줄이 빨리 줄어요), 2·3층은 앉아서 · 뜨거운 육즙 조심"
+    },
+    {
+      "id": "henjiu", "category": "food", "name": "헌지우이치엔 양꼬치 윈난난루점", "nameZh": "很久以前羊肉串 云南南路店",
+      "area": "예원·와이탄 근처", "address": "상하이시 황푸구 윈난난루 180호",
+      "addressZh": "上海市黄浦区云南南路180号 很久以前羊肉串",
+      "hours": "17:00~다음 날 04:00",
+      "price": "1인 약 120~150위안",
+      "map": "很久以前羊肉串 云南南路",
+      "tip": "상하이에서 가장 유명한 양꼬치 · 한국어 메뉴판 · 기본 맛(原味) 추천, 쯔란(커민) 맛도 맵지 않게 요청 가능 · 위챗 미니프로그램으로 대기 등록 · 테이블 화로가 뜨거워요 · 고기가 잘 익었는지 확인"
+    },
+
+    {
+      "id": "tour", "category": "transport", "name": "우전 수향마을 일일투어", "nameZh": "乌镇一日游",
+      "area": "상하이 출발 (집합 장소는 바우처 확인)",
+      "map": "乌镇西栅",
+      "tip": "집합 시간·장소·도착 장소는 바우처로 확인 · 점심 포함 여부 확인 · 상하이에서 버스로 약 2시간",
+      "reservation": "done"
+    },
+    {
+      "id": "wuzhen", "category": "sight", "name": "우전 시자 (서쪽 마을)", "nameZh": "乌镇西栅",
+      "area": "우전 (투어)", "address": "저장성 퉁샹시 우전",
+      "addressZh": "浙江省桐乡市乌镇 西栅景区",
+      "map": "乌镇西栅",
+      "tip": "운하를 따라 옛집이 늘어선 물의 마을 · 나룻배 타기 추천 · 돌다리와 돌길이 미끄러우니 편한 신발 · 저녁 조명이 아름다워요"
+    },
+    {
+      "id": "kaoyu", "category": "food", "name": "장볜청와이 카오위 (지점 확정 예정)", "nameZh": "江边城外烤鱼",
+      "area": "투어 도착 장소 근처",
+      "price": "1인 약 80~100위안",
+      "map": "江边城外烤鱼",
+      "tip": "생선을 통째로 구워 국물 자작한 철판에 · 맛은 마늘(蒜香) + '안 맵게(不辣)' 요청 · 마라 맛은 피하기 · 대안: 탄위(探鱼) 푸둥 지점"
+    },
+    {
+      "id": "breakfast", "category": "food", "name": "호텔 근처 아침 (생젠 · 더우장)", "nameZh": "生煎 豆浆 早餐",
+      "area": "호텔 근처 (확정 예정)",
+      "price": "1인 약 15~25위안",
+      "map": "早餐 浦东大道535号",
+      "tip": "생젠(바닥을 구운 만두), 더우장(두유), 유탸오(꽈배기), 츠판퇀(주먹밥) · 가게를 못 찾으면 호텔 1층 이튼 카페"
+    },
+
+    {
+      "id": "firstfood", "category": "shop", "name": "상하이 제1식품점", "nameZh": "上海市第一食品商店",
+      "area": "난징루 보행가", "address": "상하이시 황푸구 난징둥루 720호",
+      "addressZh": "上海市黄浦区南京东路720号 第一食品商店",
+      "map": "上海市第一食品商店 南京东路",
+      "tip": "상하이 과자·사탕·차 기념품이 한곳에 · 대백토 사탕, 말린 과일, 월병 · 무게 단위로 파는 상품은 가격표 확인"
+    },
+    {
+      "id": "yuyuanshop", "category": "shop", "name": "예원 상가 기념품 거리", "nameZh": "豫园商城",
+      "area": "예원", "address": "상하이시 황푸구 푸유루 168호",
+      "addressZh": "上海市黄浦区福佑路168号 豫园商城",
+      "map": "豫园商城",
+      "tip": "부채·도장·비단 소품 · 노점은 흥정 가능 · 정찰제 가게가 마음 편해요"
+    }
+  ],
+
+  "foodList": [
+    { "id": "f-duck", "name": "베이징덕", "placeIds": ["sijiminfu"] },
+    { "id": "f-waipojia", "name": "외할머니집 항저우 가정식 (동파육)", "placeIds": ["waipojia"] },
+    { "id": "f-dimsum", "name": "광둥식 딤섬", "placeIds": ["diandoude"] },
+    { "id": "f-xlb", "name": "샤오롱바오", "placeIds": ["nanxiang"] },
+    { "id": "f-yangrou", "name": "양꼬치", "placeIds": ["henjiu"] },
+    { "id": "f-kaoyu", "name": "카오위 (생선구이)", "placeIds": ["kaoyu"] },
+    { "id": "f-shengjian", "name": "생젠 · 더우장 아침", "placeIds": ["breakfast"] }
+  ],
+
+  "shoppingList": [
+    { "id": "s-whiterabbit", "category": "기념품 과자", "name": "대백토 밀크 사탕", "where": "제1식품점 · 편의점 · 공항", "tip": "상하이 대표 사탕 · 선물용 틴 케이스도 있어요" },
+    { "id": "s-mooncake", "category": "기념품 과자", "name": "상하이 전통 과자 · 월병", "where": "제1식품점", "tip": "유통기한 확인" },
+    { "id": "s-driedfruit", "category": "기념품 과자", "name": "말린 과일 · 견과류", "where": "제1식품점", "tip": "무게 단위 판매 · 가격표 확인" },
+    { "id": "s-longjing", "category": "차", "name": "룽징차 (녹차)", "where": "제1식품점 · 예원 찻집", "tip": "부모님 선물로 좋아요 · 정찰제 가게에서 구매" },
+    { "id": "s-fan", "category": "기념품", "name": "부채 · 도장 · 비단 소품", "where": "예원 상가", "tip": "노점은 흥정 가능" },
+    { "id": "s-indigo", "category": "기념품", "name": "남색 염색 천 (쪽빛 손수건·스카프)", "where": "우전", "tip": "우전 전통 공예" }
+  ],
+
+  "reservations": [
+    { "id": "r-flight", "title": "대한항공 왕복", "when": "12/11 08:25 출발 · 12/14 14:00 귀국", "status": "done", "placeId": "pvg" },
+    { "id": "r-hotel", "title": "디 이튼 호텔 상하이 (3박)", "when": "12/11 ~ 12/14", "status": "done", "placeId": "hotel" },
+    { "id": "r-tour", "title": "우전 수향마을 일일투어", "when": "12/13 (집합 시간 확인 예정)", "status": "done", "placeId": "tour", "how": "집합 장소는 바우처로 확인" },
+    { "id": "r-pickup", "title": "공항 픽업 6~7인승 (5인 · 캐리어 4개)", "when": "12/11 09:45 도착편", "status": "required", "placeId": "pickup", "how": "클룩 · 트립닷컴" },
+    { "id": "r-didi", "title": "DiDi 6인승 호텔 → 공항", "when": "12/14 10:30", "status": "recommended", "placeId": "didi", "how": "전날 밤 알리페이 DiDi에서 예약" },
+    { "id": "r-duck", "title": "사계민복 베이징덕 (5인)", "when": "12/11 12:30", "status": "recommended", "placeId": "sijiminfu", "how": "따중뎬핑 앱 또는 호텔 컨시어지에 부탁" },
+    { "id": "r-pearl", "title": "동방명주 입장권", "when": "12/11 14:00", "status": "recommended", "placeId": "pearl", "how": "클룩 · 트립닷컴 온라인 구매" },
+    { "id": "r-henjiu", "title": "헌지우이치엔 양꼬치 대기 등록", "when": "12/12 18:00 무렵", "status": "recommended", "placeId": "henjiu", "how": "예원에서 위챗 미니프로그램으로 대기 등록" }
+  ],
+
+  "prep": [
+    { "id": "p-visa", "title": "무비자 입국", "detail": "한국 일반여권은 30일까지 무비자 (2026.12.31까지 시행) · 여권 남은 기간 6개월 이상 확인 · 출발 1~2주 전 주한중국대사관 공지 다시 확인" },
+    { "id": "p-alipay", "title": "알리페이 · 위챗페이 카드 연결", "detail": "한국에서 앱 설치 → 해외 카드(비자·마스터) 연결 → 여권으로 본인 인증 · 식당·택시·지하철 거의 모두 QR 결제 · 위안화 현금도 조금 준비" },
+    { "id": "p-didi", "title": "DiDi 준비", "detail": "알리페이 안에서 DiDi 미니프로그램 열어 보기 · 차종은 '6座(6-Seater)' · 목적지는 이 앱의 '기사님께 보여 주기' 중국어 주소로 입력" },
+    { "id": "p-amap", "title": "고덕지도 설치", "detail": "갤럭시는 플레이스토어, 아이폰은 앱스토어에서 '고덕지도(Amap)' 설치 · 중국에서는 구글맵 대신 사용 · 아이폰은 Apple 지도도 잘 돼요" },
+    { "id": "p-wifi", "title": "와이파이 도시락", "detail": "인천공항에서 수령 · 카카오톡·구글이 되는 상품인지 미리 문의 (카카오톡 채널 @도시락통) · 보조배터리 함께 챙기기" },
+    { "id": "p-app", "title": "출발 전 이 앱 한 번 열기", "detail": "한국에서 와이파이 연결 상태로 앱을 열고 탭을 한 번씩 눌러 두세요 · 중국에서 인터넷이 안 돼도 일정·지도·사진이 보여요 · 홈 화면에 추가 권장" },
+    { "id": "p-parents", "title": "부모님 챙기기", "detail": "상비약 · 편한 운동화 · 얇은 패딩과 목도리 (12월 상하이 최저 약 4°) · 화장실 휴지 · 여권은 항상 지참 (관광지 입장에 필요)" }
+  ],
+
+  "subway": {
+    "fare": "지하철 기본요금 3위안 (6km까지) · 알리페이 교통 QR로 탑승 · 역마다 짐 보안 검사",
+    "officialUrl": "https://www.shmetro.com/",
+    "lines": [
+      { "id": "2", "name": "2호선", "color": "#8cc220", "stations": ["징안쓰", "난징시루", "인민광장", "난징둥루", "루자쭈이", "둥창루"] },
+      { "id": "10", "name": "10호선", "color": "#c6afd4", "stations": ["난징둥루", "위위안", "라오시먼", "신톈디", "산시난루", "상하이 도서관", "자오퉁대학"] },
+      { "id": "13", "name": "13호선", "color": "#e999c0", "stations": ["난징시루", "화이하이중루", "신톈디", "마당루"] },
+      { "id": "14", "name": "14호선", "color": "#626020", "stations": ["징안쓰", "황피난루", "다스제", "위위안", "루자쭈이", "푸둥다다오"] }
+    ],
+    "routes": [
+      { "from": "호텔", "to": "예원", "how": "14호선 푸둥다다오역 → 위위안역 (갈아타지 않음)", "alt": "DiDi 6인승 약 15분" },
+      { "from": "호텔", "to": "신톈디", "how": "14호선 푸둥다다오역 → 황피난루역 (갈아타지 않음)", "alt": "DiDi 6인승 약 20분" },
+      { "from": "루자쭈이", "to": "와이탄 · 난징루", "how": "2호선 루자쭈이역 → 난징둥루역 (1정거장), 도보 약 10분", "alt": "DiDi 6인승 약 15분" },
+      { "from": "신톈디", "to": "임시정부 청사", "how": "도보 약 5분 (13호선 마당루역 근처)" },
+      { "from": "호텔", "to": "푸둥공항", "how": "DiDi 6인승 약 50분 (전날 밤 예약)", "alt": "지하철·자기부상열차는 짐과 계단 때문에 비추천" }
+    ],
+    "tips": [
+      "알리페이 → '교통(出行)' → 상하이 지하철 QR을 개찰구에 대면 돼요 · 한 번 등록하면 계속 사용",
+      "모든 역에서 가방 보안 검사를 해요 · 부모님은 엘리베이터 위치를 역 안내판에서 확인",
+      "역 안내판에는 영어도 함께 적혀 있어요 · 노선 번호와 색깔을 따라가세요",
+      "이동은 DiDi 6인승이 기본 · 지하철은 가까운 구간만 보조로 사용"
+    ]
+  }
+}
