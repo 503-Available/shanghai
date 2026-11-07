@@ -271,7 +271,7 @@
       '<div class="hero-inner">' +
         '<span class="hero-dday">' + esc(dday) + '</span>' +
         '<div class="hero-kicker">' + esc(c.label || 'SHANGHAI') + '</div>' +
-        '<h2 class="hero-title" data-admin-tap>' + esc(trip.title.replace(/\s*\d{4}$/, '')) + '</h2>' +
+        '<h2 class="hero-title" data-admin-tap>' + esc(trip.heroTitle || trip.title.replace(/\s*\d{4}$/, '')) + '</h2>' +
         '<div class="hero-meta">' + s[0] + '.' + (+s[1]) + '.' + (+s[2]) + ' – ' + (+e[1]) + '.' + (+e[2]) +
           ' · 3박 4일</div>' +
       '</div>' +
