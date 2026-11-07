@@ -3,6 +3,7 @@
   "short_name": "상하이 2026",
   "description": "상하이 미식 투어 2026",
   "lang": "ko",
+  "id": "/shanghai/?app=shanghai2026",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
