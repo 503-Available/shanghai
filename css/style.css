@@ -377,7 +377,11 @@ details[open].card summary .chev { transform: rotate(90deg); }
 .sheet.zoomed .sig { display: none; }
 
 /* ---------- 15. 상하이 추가: 호텔로 버튼 (Day별 일정 맨 아래) ---------- */
-.hotel-btn { width: 100%; margin-top: 14px; min-height: 56px; font-size: 18px; }
+.hotel-btn {
+  width: fit-content; margin: 14px 0 0 auto; min-height: 46px; padding: 0 18px; gap: 6px;
+  border-radius: 999px; font-size: 15.5px; box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* ---------- 16. 상하이 추가: 여행 중 도구 (중국어 카드 · 환산) ---------- */
 .tool summary .tile { width: 34px; height: 34px; border-radius: 10px; }
