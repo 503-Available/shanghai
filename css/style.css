@@ -376,17 +376,8 @@ details[open].card summary .chev { transform: rotate(90deg); }
   font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif; }
 .sheet.zoomed .sig { display: none; }
 
-/* ---------- 15. 상하이 추가: 호텔로 버튼 ---------- */
-body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 70px); }
-.hotel-fab {
-  position: fixed; right: 16px; z-index: 19;
-  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 12px);
-  display: flex; align-items: center; gap: 6px; height: 46px; padding: 0 18px;
-  border: 0; border-radius: 999px; background: var(--accent); color: #fff;
-  font-size: 15.5px; font-weight: 700; cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .25); -webkit-tap-highlight-color: transparent;
-}
-.hotel-fab[hidden] { display: none; }
+/* ---------- 15. 상하이 추가: 호텔로 버튼 (Day별 일정 맨 아래) ---------- */
+.hotel-btn { width: 100%; margin-top: 14px; min-height: 56px; font-size: 18px; }
 
 /* ---------- 16. 상하이 추가: 여행 중 도구 (중국어 카드 · 환산) ---------- */
 .tool summary .tile { width: 34px; height: 34px; border-radius: 10px; }

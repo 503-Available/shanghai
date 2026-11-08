@@ -203,14 +203,13 @@
         var TABS = ['schedule', 'food', 'sight', 'shop', 'reserve', 'subway'];
         state.tab = TABS.indexOf(hashTab) >= 0 ? hashTab : load('tab', 'schedule');
         renderHeader();
-        fab.hidden = !placeById.hotel;
         render();
         if (params.get('place')) {
           openPlace(params.get('place'));
           if (params.get('zoom') === '1' && sheet.querySelector('[data-zoom]')) toggleZoom(sheet.querySelector('[data-zoom]'));  // 테스트용
         }
         if (params.get('admin') === '1') openAdmin();
-        if (params.get('hotel') === '1') fab.click();              // 테스트용
+        if (params.get('hotel') === '1') goHotel();                // 테스트용
         if (params.get('phrase')) openPhrase(params.get('phrase'));  // 테스트용
         // 테스트용: ?wxdemo=1 → 예보 화면 미리보기 (가짜 값)
         if (params.get('wxdemo') === '1') {
@@ -328,7 +327,9 @@
     var rain = day.rain && day.rain.length ? '<h2 class="section-title">비 올 때</h2><div class="card"><ul class="tips-list">' +
       day.rain.map(function (t) { return '<li>' + icon('rain') + '<span>' + esc(t) + '</span></li>'; }).join('') + '</ul></div>' : '';
 
-    return renderHero() + seg + head + renderWeather(day) + top + list + rain;
+    var hotelBtn = placeById.hotel ? '<button class="btn primary hotel-btn" data-hotel>' + icon('car') + '호텔로</button>' : '';
+
+    return renderHero() + seg + head + renderWeather(day) + top + list + rain + hotelBtn;
   }
 
   // ---------- 8. 맛집 (FR-04) ----------
@@ -550,7 +551,9 @@
   function showSheet() {
     sheet.hidden = false; backdrop.hidden = false;
     document.body.style.overflow = 'hidden';
-    sheet.querySelector('[data-close]').focus();
+    // 닫기 버튼에 초점을 줘도 창이 아래로 내려가지 않게 하고, 항상 맨 위부터 보여 줌
+    sheet.querySelector('[data-close]').focus({ preventScroll: true });
+    sheet.scrollTop = 0;
   }
   // 중국어 카드를 크게 표시 (직원에게 그대로 보여 주는 용도)
   function openPhrase(id) {
@@ -627,6 +630,7 @@
     var dayBtn = e.target.closest('[data-day]');
     if (dayBtn) { state.dayIndex = +dayBtn.dataset.day; save('dayIndex', state.dayIndex); render(); return; }
     if (e.target.closest('input, label')) return;
+    if (e.target.closest('[data-hotel]')) { goHotel(); return; }
     var ph = e.target.closest('[data-phrase]');
     if (ph) { openPhrase(ph.dataset.phrase); return; }
     var pl = e.target.closest('[data-place]');
@@ -640,14 +644,12 @@
 
   view.addEventListener('input', function (e) { if (e.target.id === 'fx-input') updateFx(e.target); });
 
-  // 호텔로: 어느 화면에서든 호텔 중국어 주소를 크게 표시
-  var fab = document.getElementById('go-hotel');
-  fab.insertAdjacentHTML('afterbegin', icon('car'));
-  fab.addEventListener('click', function () {
+  // 호텔로: Day별 일정 맨 아래 버튼. 호텔 중국어 주소를 크게 표시
+  function goHotel() {
     openPlace('hotel');
     var z = sheet.querySelector('[data-zoom]');
     if (z) toggleZoom(z);
-  });
+  }
 
   backdrop.addEventListener('click', closeSheet);
   sheet.addEventListener('click', function (e) {
