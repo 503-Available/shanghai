@@ -334,7 +334,7 @@
         var p = placeById[it.placeId];
         var foods = trip.foodList.filter(function (f) { return (f.placeIds || []).indexOf(p.id) >= 0; })
           .map(function (f) { return f.name; });
-        var what = p.signature ? '대표 메뉴 · ' + p.signature.join(', ') : foods.length ? foods.join(', ') : it.title.replace(/^[^:]*:\s*/, '');
+        var what = p.signature ? '대표 메뉴 · ' + p.signature.map(function (s) { return s.name; }).join(', ') : foods.length ? foods.join(', ') : it.title.replace(/^[^:]*:\s*/, '');
         return row({
           place: p.id, lead: '<span class="time">' + esc(it.time) + '</span>' + tile('food'),
           title: esc(p.name), sub: esc(what + (p.price ? ' · ' + p.price : '')), extra: badge(p.reservation)
@@ -392,7 +392,7 @@
   }
 
   // ---------- 11-1. 출발 전 준비 (예약 탭 맨 위, 접힌 카드) ----------
-  var PREP_ICON = { 'p-visa': 'file', 'p-alipay': 'yen', 'p-didi': 'car', 'p-amap': 'nav', 'p-wifi': 'pulse', 'p-app': 'refresh', 'p-parents': 'bulb' };
+  var PREP_ICON = { 'p-visa': 'file', 'p-alipay': 'yen', 'p-didi': 'car', 'p-amap': 'nav', 'p-wifi': 'pulse', 'p-app': 'refresh', 'p-install': 'check', 'p-parents': 'bulb' };
   function renderPrep() {
     var prep = trip.prep || [];
     if (!prep.length) return '';
@@ -478,7 +478,7 @@
     if (!p) return;
     lastFocus = document.activeElement;
     var rows = [
-      ['utensils', p.signature ? '대표 메뉴 · ' + p.signature.join(', ') : ''], ['pin', p.address], ['clock', p.hours], ['ban', p.closed ? '휴무 ' + p.closed : ''],
+      ['pin', p.address], ['clock', p.hours], ['ban', p.closed ? '휴무 ' + p.closed : ''],
       ['yen', p.price], ['phone', p.tel]
     ].filter(function (r) { return r[1]; });
 
@@ -488,11 +488,16 @@
       '<div class="n" lang="zh-CN">' + esc(p.nameZh || '') + '</div>' +
       '<div class="a" lang="zh-CN">' + esc(p.addressZh) + '</div></div>' : '';
     var q = p.map || p.nameZh || p.name;
+    // 대표 메뉴: 주문할 때 직원에게 보여 주도록 중국어 메뉴명을 함께 표시
+    var sig = p.signature ? '<div class="sig"><div class="l">대표 메뉴 · 주문할 때 직원에게 보여 주세요</div>' +
+      p.signature.map(function (s) {
+        return '<div class="m"><span class="ko">' + esc(s.name) + '</span><span class="zh" lang="zh-CN">' + esc(s.zh) + '</span></div>';
+      }).join('') + '</div>' : '';
 
     sheet.innerHTML = '<div class="grabber"></div>' +
       '<div class="sheet-head">' + tile(p.category) + '<div><h2>' + esc(p.name) + '</h2>' +
       (p.nameZh && !card ? '<div class="ja">현지 표기 · <span lang="zh-CN">' + esc(p.nameZh) + '</span></div>' : '') + '</div></div>' +
-      badge(p.reservation) + card +
+      badge(p.reservation) + card + sig +
       '<ul class="info">' + rows.map(function (r) { return '<li>' + icon(r[0]) + '<span>' + esc(r[1]) + '</span></li>'; }).join('') + '</ul>' +
       (p.tip ? '<div class="tip">' + icon('bulb') + '<span>' + esc(p.tip) + '</span></div>' : '') +
       '<div class="actions">' +

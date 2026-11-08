@@ -365,3 +365,13 @@ details[open].card summary .chev { transform: rotate(90deg); }
 
 /* 지하철 주요 역: 번호 대신 노선 색 점 */
 .stations .no { min-width: 10px; width: 10px; height: 10px; padding: 0; border-radius: 50%; vertical-align: 1px; }
+
+/* ---------- 14. 상하이 추가: 대표 메뉴 (식당 직원에게 보여 주기) ---------- */
+.sig { margin-top: 14px; padding: 10px 14px; background: var(--surface-2); border-radius: 14px; }
+.sig .l { font-size: 13px; font-weight: 700; color: var(--text-sub); }
+.sig .m { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-top: 1px solid var(--line); }
+.sig .l + .m { border-top: 0; }
+.sig .ko { font-size: 15.5px; font-weight: 600; min-width: 0; }
+.sig .zh { flex: none; font-size: 20px; font-weight: 800; letter-spacing: 0;
+  font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif; }
+.sheet.zoomed .sig { display: none; }
