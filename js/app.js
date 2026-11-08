@@ -334,7 +334,7 @@
         var p = placeById[it.placeId];
         var foods = trip.foodList.filter(function (f) { return (f.placeIds || []).indexOf(p.id) >= 0; })
           .map(function (f) { return f.name; });
-        var what = foods.length ? foods.join(', ') : it.title.replace(/^[^:]*:\s*/, '');
+        var what = p.signature ? '대표 메뉴 · ' + p.signature.join(', ') : foods.length ? foods.join(', ') : it.title.replace(/^[^:]*:\s*/, '');
         return row({
           place: p.id, lead: '<span class="time">' + esc(it.time) + '</span>' + tile('food'),
           title: esc(p.name), sub: esc(what + (p.price ? ' · ' + p.price : '')), extra: badge(p.reservation)
@@ -478,7 +478,7 @@
     if (!p) return;
     lastFocus = document.activeElement;
     var rows = [
-      ['pin', p.address], ['clock', p.hours], ['ban', p.closed ? '휴무 ' + p.closed : ''],
+      ['utensils', p.signature ? '대표 메뉴 · ' + p.signature.join(', ') : ''], ['pin', p.address], ['clock', p.hours], ['ban', p.closed ? '휴무 ' + p.closed : ''],
       ['yen', p.price], ['phone', p.tel]
     ].filter(function (r) { return r[1]; });
 

@@ -4,7 +4,7 @@
    - 여행 데이터(trip.json): 인터넷이 되면 최신본, 안 되면 저장본
    파일을 수정해서 다시 올릴 때는 VERSION 숫자를 올려 주세요.
    ========================================================= */
-var VERSION = 'v4';
+var VERSION = 'v5';
 var CACHE = 'shanghai2026-' + VERSION;
 var FILES = [
   './',

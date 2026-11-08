@@ -43,6 +43,7 @@ foreach ($p in $trip.places) {
     if ($p.$f -and ($p.$f -match $hangul)) { Err "place $($p.id): $f contains Korean characters ($($p.$f))" }
   }
   if (-not $p.nameZh) { Warn "place $($p.id): no nameZh (driver card will be empty)" }
+  if ($p.category -eq 'food' -and ($p.signature.Count -lt 1 -or $p.signature.Count -gt 2)) { Err "place $($p.id): food place needs 1-2 signature dishes" }
   if ($p.reservation -and ($validResv -notcontains $p.reservation)) { Err "place $($p.id): bad reservation '$($p.reservation)'" }
   if ($p.tel -and ($p.tel -notmatch '^[0-9\-]+$')) { Err "place $($p.id): bad tel '$($p.tel)'" }
 }
