@@ -4,7 +4,7 @@
    - 여행 데이터(trip.json): 인터넷이 되면 최신본, 안 되면 저장본
    파일을 수정해서 다시 올릴 때는 VERSION 숫자를 올려 주세요.
    ========================================================= */
-var VERSION = 'v6';
+var VERSION = 'v7';
 var CACHE = 'shanghai2026-' + VERSION;
 var FILES = [
   './',
@@ -31,7 +31,7 @@ self.addEventListener('install', function (e) {
 self.addEventListener('activate', function (e) {
   e.waitUntil(
     caches.keys().then(function (keys) {
-      return Promise.all(keys.filter(function (k) { return k !== CACHE; })
+      return Promise.all(keys.filter(function (k) { return k.indexOf('shanghai2026-') === 0 && k !== CACHE; })
         .map(function (k) { return caches.delete(k); }));
     }).then(function () { return self.clients.claim(); })
   );

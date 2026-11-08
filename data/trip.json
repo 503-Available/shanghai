@@ -34,6 +34,7 @@
       "label": "Day 2",
       "theme": "임시정부 · 신톈디 · 우캉루 · 예원 야경",
       "cover": { "image": "img/cover-day2.jpg", "label": "SHANGHAI · YUYUAN", "credit": "Timothée Gidenne / Unsplash" },
+      "rain": ["임시정부 청사는 실내 관람이라 그대로 진행", "톈쯔팡과 우캉루는 둘 중 한 곳만 짧게 보고, 남은 시간은 신톈디 쇼핑몰 안 카페에서 쉬기", "예원과 구곡교는 바닥이 젖으면 미끄러워요 → 비가 세면 야경을 줄이고 바로 저녁 장소로", "더 실내 위주로 바꾸려면 상하이박물관 동관(푸둥) · 방문 전 개관 시간과 예약 확인"],
       "weather": { "place": "상하이", "lat": 31.2304, "lon": 121.4737, "normalHigh": 11, "normalLow": 4 },
       "items": [
         { "time": "07:45", "type": "food", "title": "아침: 호텔 조식", "placeId": "hotel" },
@@ -56,6 +57,7 @@
       "label": "Day 3",
       "theme": "우전 수향마을 투어",
       "cover": { "image": "img/cover-day3.jpg", "label": "WUZHEN · WATER TOWN", "credit": "Calvin Wong / Unsplash" },
+      "rain": ["투어 진행 여부는 바우처 연락처와 가이드 안내를 먼저 확인", "우산과 미끄럼 방지 신발 챙기기 · 돌길과 돌다리는 부모님과 천천히", "비가 오면 실내 위주로: 초목 염색 공방, 목심미술관 (월요일 휴관 · 일요일은 개관)"],
       "weather": { "place": "우전", "lat": 30.7457, "lon": 120.4876, "normalHigh": 11, "normalLow": 3 },
       "items": [
         { "time": "07:30", "type": "food", "title": "아침: 호텔 조식", "placeId": "hotel" },
@@ -306,6 +308,21 @@
     { "id": "r-duck", "title": "사계민복 베이징덕 (5인)", "when": "12/11 12:30", "status": "recommended", "placeId": "sijiminfu", "how": "따중뎬핑 앱 또는 호텔 컨시어지에 부탁" },
     { "id": "r-pearl", "title": "동방명주 입장권", "when": "12/11 14:00", "status": "recommended", "placeId": "pearl", "how": "클룩 · 트립닷컴 온라인 구매" },
     { "id": "r-henjiu", "title": "헌지우이치엔 양꼬치 대기 등록", "when": "12/12 18:00 무렵", "status": "recommended", "placeId": "henjiu", "how": "예원에서 위챗 미니프로그램으로 대기 등록" }
+  ],
+
+  "fx": { "rate": 203, "asOf": "2026-11-08" },
+
+  "phrases": [
+    { "id": "ph-spicy", "ko": "맵지 않게 해 주세요", "zh": "请不要放辣椒，不要辣。" },
+    { "id": "ph-cilantro", "ko": "고수는 빼 주세요", "zh": "请不要放香菜。" },
+    { "id": "ph-five", "ko": "다섯 명이에요", "zh": "我们一共五位。" },
+    { "id": "ph-water", "ko": "따뜻한 물 좀 주세요", "zh": "请给我一杯热水。" },
+    { "id": "ph-pack", "ko": "포장해 주세요", "zh": "请帮我打包。" },
+    { "id": "ph-bill", "ko": "계산해 주세요", "zh": "您好，买单。" },
+    { "id": "ph-toilet", "ko": "화장실이 어디예요?", "zh": "请问洗手间在哪里？" },
+    { "id": "ph-price", "ko": "이거 얼마예요?", "zh": "这个多少钱？" },
+    { "id": "ph-photo", "ko": "사진 좀 찍어 주세요", "zh": "请帮我们拍张照片。" },
+    { "id": "ph-hospital", "ko": "가까운 병원으로 데려가 주세요", "zh": "请带我们去最近的医院。" }
   ],
 
   "prep": [

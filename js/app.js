@@ -60,6 +60,7 @@
     fog: '<path d="M4 9h16M3 13h18M5 17h14"/>',
     car: '<path d="M5 17H3.5a.5.5 0 0 1-.5-.5V13l2.2-5.2A1.5 1.5 0 0 1 6.6 7h10.8a1.5 1.5 0 0 1 1.4.8L21 13v3.5a.5.5 0 0 1-.5.5H19"/><path d="M3 13h18M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
     zoom: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6M11 8v6"/>',
+    chat: '<path d="M21 12a8 8 0 0 1-8 8H4l2.2-3.3A8 8 0 1 1 21 12z"/><path d="M8.5 12h7M8.5 9h7"/>',
     list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>'
   };
   function icon(name, cls) {
@@ -82,14 +83,16 @@
   var TEST_DATE = /^\d{4}-\d{2}-\d{2}$/.test(params.get('date') || '') ? params.get('date') : null;
   var TEST_TIME = /^\d{2}:\d{2}$/.test(params.get('time') || '') ? params.get('time') : null;
 
+  // 휴대폰 시계가 한국 시간으로 남아 있어도 항상 상하이 시간(UTC+8, 서머타임 없음)으로 계산
+  function shanghaiNow() { return new Date(Date.now() + 8 * 60 * 60 * 1000); }
   function todayStr() {
     if (TEST_DATE) return TEST_DATE;
-    var d = new Date();
-    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    var d = shanghaiNow();
+    return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
   }
   function nowHHMM() {
     if (TEST_TIME) return TEST_TIME;
-    var d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes());
+    var d = shanghaiNow(); return pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes());
   }
   function dateLabel(iso) {
     var p = iso.split('-');
@@ -200,12 +203,15 @@
         var TABS = ['schedule', 'food', 'sight', 'shop', 'reserve', 'subway'];
         state.tab = TABS.indexOf(hashTab) >= 0 ? hashTab : load('tab', 'schedule');
         renderHeader();
+        fab.hidden = !placeById.hotel;
         render();
         if (params.get('place')) {
           openPlace(params.get('place'));
           if (params.get('zoom') === '1' && sheet.querySelector('[data-zoom]')) toggleZoom(sheet.querySelector('[data-zoom]'));  // 테스트용
         }
         if (params.get('admin') === '1') openAdmin();
+        if (params.get('hotel') === '1') fab.click();              // 테스트용
+        if (params.get('phrase')) openPhrase(params.get('phrase'));  // 테스트용
         // 테스트용: ?wxdemo=1 → 예보 화면 미리보기 (가짜 값)
         if (params.get('wxdemo') === '1') {
           var demo = { time: ['2026-12-11', '2026-12-12', '2026-12-13', '2026-12-14'],
@@ -319,7 +325,10 @@
       });
     }).join('') + '</ul>';
 
-    return renderHero() + seg + head + renderWeather(day) + top + list;
+    var rain = day.rain && day.rain.length ? '<h2 class="section-title">비 올 때</h2><div class="card"><ul class="tips-list">' +
+      day.rain.map(function (t) { return '<li>' + icon('rain') + '<span>' + esc(t) + '</span></li>'; }).join('') + '</ul></div>' : '';
+
+    return renderHero() + seg + head + renderWeather(day) + top + list + rain;
   }
 
   // ---------- 8. 맛집 (FR-04) ----------
@@ -379,7 +388,7 @@
     var order = { required: 0, recommended: 1, done: 2 };
     var list = trip.reservations.slice().sort(function (a, b) { return order[a.status] - order[b.status]; });
     var todo = list.filter(function (r) { return r.status !== 'done'; }).length;
-    return renderPrep() + '<h2 class="section-title">예약 현황</h2>' +
+    return renderPrep() + renderTools() + '<h2 class="section-title">예약 현황</h2>' +
       '<div class="card"><b>' + (todo ? '예약할 곳 ' + todo + '곳 남았어요' : '모든 예약 완료!') + '</b>' +
       '<div class="muted">예약번호·바우처는 각자 휴대폰에 보관하세요.</div></div>' +
       '<ul class="list">' + list.map(function (r) {
@@ -405,6 +414,26 @@
         return '<li><span class="tile t-flight">' + icon(PREP_ICON[p.id] || 'check') + '</span>' +
           '<span><b>' + esc(p.title) + '</b><span class="d">' + esc(p.detail) + '</span></span></li>';
       }).join('') + '</ul></details>';
+  }
+
+  // ---------- 11-2. 여행 중 도구: 중국어 카드 + 위안화 환산 ----------
+  function renderTools() {
+    var ph = trip.phrases || [], fx = trip.fx;
+    var d = fx ? fx.asOf.split('-') : [];
+    return '<h2 class="section-title">여행 중 도구</h2>' +
+      '<details class="card tool"' + (params.get('prep') === '1' ? ' open' : '') + '><summary><span class="tile t-flight">' + icon('chat') + '</span>' +
+      '<span class="prep-sum"><b>중국어 카드 ' + ph.length + '가지</b><span class="muted">누르면 크게 보여 줘요</span></span>' +
+      '<span class="chev">' + icon('chev', 'sm') + '</span></summary><div class="phrases">' +
+      ph.map(function (p) { return '<button class="phrase" data-phrase="' + esc(p.id) + '"><span>' + esc(p.ko) + '</span>' + icon('zoom', 'sm') + '</button>'; }).join('') +
+      '</div></details>' +
+      (fx ? '<div class="card"><b>위안화 환산</b>' +
+        '<div class="fx-row"><input id="fx-input" type="number" inputmode="decimal" min="0" placeholder="금액 입력" aria-label="위안 금액"><span class="unit">위안</span></div>' +
+        '<div class="fx-result" id="fx-result" aria-live="polite">0원</div>' +
+        '<div class="muted">1위안 = 약 ' + esc(fx.rate) + '원 · ' + (+d[1]) + '/' + (+d[2]) + ' 환율 기준 어림값</div></div>' : '');
+  }
+  function updateFx(input) {
+    var v = parseFloat(input.value), out = document.getElementById('fx-result');
+    out.textContent = v > 0 ? '약 ' + (Math.round(v * trip.fx.rate / 100) * 100).toLocaleString('ko-KR') + '원' : '0원';
   }
 
   // ---------- 12. 지하철 (여행 구간만 그린 간략 노선도) ----------
@@ -523,7 +552,20 @@
     document.body.style.overflow = 'hidden';
     sheet.querySelector('[data-close]').focus();
   }
+  // 중국어 카드를 크게 표시 (직원에게 그대로 보여 주는 용도)
+  function openPhrase(id) {
+    var p = (trip.phrases || []).filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    lastFocus = document.activeElement;
+    sheet.innerHTML = '<div class="grabber"></div>' +
+      '<div class="zhcard phrase-card"><div class="l">직원에게 보여 주세요</div>' +
+      '<div class="n" lang="zh-CN">' + esc(p.zh) + '</div></div>' +
+      '<p class="phrase-ko">' + esc(p.ko) + '</p>' +
+      '<button class="btn close" data-close>닫기</button>';
+    showSheet();
+  }
   function closeSheet() {
+    sheet.classList.remove('zoomed');   // 크게 보기 상태가 다음 장소로 이어지지 않게
     sheet.hidden = true; backdrop.hidden = true;
     document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus();
@@ -585,6 +627,8 @@
     var dayBtn = e.target.closest('[data-day]');
     if (dayBtn) { state.dayIndex = +dayBtn.dataset.day; save('dayIndex', state.dayIndex); render(); return; }
     if (e.target.closest('input, label')) return;
+    var ph = e.target.closest('[data-phrase]');
+    if (ph) { openPhrase(ph.dataset.phrase); return; }
     var pl = e.target.closest('[data-place]');
     if (pl) openPlace(pl.dataset.place);
   });
@@ -592,6 +636,17 @@
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-place][tabindex]')) {
       e.preventDefault(); openPlace(e.target.dataset.place);
     }
+  });
+
+  view.addEventListener('input', function (e) { if (e.target.id === 'fx-input') updateFx(e.target); });
+
+  // 호텔로: 어느 화면에서든 호텔 중국어 주소를 크게 표시
+  var fab = document.getElementById('go-hotel');
+  fab.insertAdjacentHTML('afterbegin', icon('car'));
+  fab.addEventListener('click', function () {
+    openPlace('hotel');
+    var z = sheet.querySelector('[data-zoom]');
+    if (z) toggleZoom(z);
   });
 
   backdrop.addEventListener('click', closeSheet);

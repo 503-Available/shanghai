@@ -103,6 +103,13 @@ if ($raw -match '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}') { Err "privacy
 if ($raw -match '\b[A-Z]{1,2}\d{7,8}\b') { Err "privacy: passport-like number found" }
 if ($raw -match '(?<![\d-])\d{8,}(?![\d-])') { Err "privacy: long number (booking no.?) found" }
 
+# 8. Phrases and exchange rate
+foreach ($ph in $trip.phrases) {
+  if (-not $ph.id -or -not $ph.ko -or -not $ph.zh) { Err "phrase missing field: $($ph.id)" }
+  elseif ($ph.zh -match $hangul) { Err "phrase $($ph.id): zh contains Korean" }
+}
+if (-not ($trip.fx.rate -gt 0) -or -not $trip.fx.asOf) { Err "fx needs rate and asOf" }
+
 # Report
 Write-Host ("places={0} days={1} items={2}" -f $trip.places.Count, $trip.days.Count, (($trip.days | ForEach-Object { $_.items.Count }) | Measure-Object -Sum).Sum)
 foreach ($w in $warns) { Write-Host "[WARN] $w" -ForegroundColor Yellow }
