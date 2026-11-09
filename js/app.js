@@ -566,8 +566,8 @@
       '<div class="n" lang="zh-CN">' + esc(p.zh) + '</div></div>' +
       (p.pron ? '<div class="phrase-pron"><span class="l">한글 발음</span>' + esc(p.pron) + '</div>' : '') +
       '<p class="phrase-ko">' + esc(p.ko) + '</p>' +
-      (SPEECH_OK ? '<button class="btn primary phrase-speak" data-speak="' + esc(p.zh) + '">' + icon('volume') + '중국어로 듣기</button>' +
-        '<p class="speak-msg" hidden>이 휴대폰에서는 중국어 음성을 쓸 수 없어요. 한글 발음을 읽거나 이 화면을 보여 주세요.</p>' : '') +
+      '<button class="btn primary phrase-speak" data-speak="' + esc(p.zh) + '">' + icon('volume') + '중국어로 듣기</button>' +
+      '<p class="speak-msg" hidden>이 휴대폰에서는 중국어 음성을 쓸 수 없어요. 한글 발음을 읽거나 이 화면을 보여 주세요.</p>' +
       '<button class="btn close" data-close>닫기</button>';
     showSheet();
   }
@@ -579,6 +579,7 @@
     var msg = sheet.querySelector('.speak-msg');
     function fail() { if (msg) msg.hidden = false; }
     if (msg) msg.hidden = true;
+    if (!SPEECH_OK) { fail(); return; }   // 음성 기능이 없는 브라우저는 안내만 표시
     var synth = window.speechSynthesis;
     var voices = synth.getVoices();
     var zh = voices.filter(function (v) { return /^(zh|cmn)[-_](CN|Hans)/i.test(v.lang); })[0];
