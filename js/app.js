@@ -61,6 +61,7 @@
     car: '<path d="M5 17H3.5a.5.5 0 0 1-.5-.5V13l2.2-5.2A1.5 1.5 0 0 1 6.6 7h10.8a1.5 1.5 0 0 1 1.4.8L21 13v3.5a.5.5 0 0 1-.5.5H19"/><path d="M3 13h18M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
     zoom: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6M11 8v6"/>',
     chat: '<path d="M21 12a8 8 0 0 1-8 8H4l2.2-3.3A8 8 0 1 1 21 12z"/><path d="M8.5 12h7M8.5 9h7"/>',
+    volume: '<path d="M4 9.5v5h3.5l4.5 4v-13l-4.5 4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/>',
     list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>'
   };
   function icon(name, cls) {
@@ -563,11 +564,36 @@
     sheet.innerHTML = '<div class="grabber"></div>' +
       '<div class="zhcard phrase-card"><div class="l">직원에게 보여 주세요</div>' +
       '<div class="n" lang="zh-CN">' + esc(p.zh) + '</div></div>' +
+      (p.pron ? '<div class="phrase-pron"><span class="l">한글 발음</span>' + esc(p.pron) + '</div>' : '') +
       '<p class="phrase-ko">' + esc(p.ko) + '</p>' +
+      (SPEECH_OK ? '<button class="btn primary phrase-speak" data-speak="' + esc(p.zh) + '">' + icon('volume') + '중국어로 듣기</button>' +
+        '<p class="speak-msg" hidden>이 휴대폰에서는 중국어 음성을 쓸 수 없어요. 한글 발음을 읽거나 이 화면을 보여 주세요.</p>' : '') +
       '<button class="btn close" data-close>닫기</button>';
     showSheet();
   }
+  // 중국어 카드 소리 내어 읽기 (휴대폰에 내장된 중국어 음성 사용)
+  var SPEECH_OK = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  var currentSpeech = null;   // 일부 브라우저에서 읽는 도중 끊기지 않게 참조를 유지
+  if (SPEECH_OK) window.speechSynthesis.getVoices();   // 음성 목록을 미리 불러옴
+  function speakZh(text) {
+    var msg = sheet.querySelector('.speak-msg');
+    function fail() { if (msg) msg.hidden = false; }
+    if (msg) msg.hidden = true;
+    var synth = window.speechSynthesis;
+    var voices = synth.getVoices();
+    var zh = voices.filter(function (v) { return /^(zh|cmn)[-_](CN|Hans)/i.test(v.lang); })[0];
+    if (voices.length && !zh) { fail(); return; }   // 목록을 불러왔는데 중국어 음성이 없음
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN';
+    u.rate = 0.85;    // 알아듣기 쉽게 조금 천천히
+    if (zh) u.voice = zh;
+    u.onerror = function (e) { if (e.error !== 'canceled' && e.error !== 'interrupted') fail(); };
+    currentSpeech = u;
+    synth.speak(u);
+  }
   function closeSheet() {
+    if (SPEECH_OK) window.speechSynthesis.cancel();   // 창을 닫으면 읽기도 멈춤
     sheet.classList.remove('zoomed');   // 크게 보기 상태가 다음 장소로 이어지지 않게
     sheet.hidden = true; backdrop.hidden = true;
     document.body.style.overflow = '';
@@ -655,6 +681,8 @@
   sheet.addEventListener('click', function (e) {
     if (e.target.closest('[data-close]')) closeSheet();
     if (e.target.closest('[data-reload]')) location.reload();
+    var sp = e.target.closest('[data-speak]');
+    if (sp) speakZh(sp.dataset.speak);
     var z = e.target.closest('[data-zoom]');
     if (z) toggleZoom(z);
   });

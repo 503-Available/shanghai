@@ -107,6 +107,8 @@ if ($raw -match '(?<![\d-])\d{8,}(?![\d-])') { Err "privacy: long number (bookin
 foreach ($ph in $trip.phrases) {
   if (-not $ph.id -or -not $ph.ko -or -not $ph.zh) { Err "phrase missing field: $($ph.id)" }
   elseif ($ph.zh -match $hangul) { Err "phrase $($ph.id): zh contains Korean" }
+  if (-not $ph.pron -or $ph.pron -notmatch $hangul) { Err "phrase $($ph.id): pron must be Korean reading" }
+  elseif ($ph.pron -match ('[' + [char]0x4E00 + '-' + [char]0x9FFF + ']')) { Err "phrase $($ph.id): pron contains Chinese characters" }
 }
 if (-not ($trip.fx.rate -gt 0) -or -not $trip.fx.asOf) { Err "fx needs rate and asOf" }
 
