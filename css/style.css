@@ -369,7 +369,17 @@ details[open].card summary .chev { transform: rotate(90deg); }
 /* ---------- 14. 상하이 추가: 대표 메뉴 (식당 직원에게 보여 주기) ---------- */
 .sig { margin-top: 14px; padding: 10px 14px; background: var(--surface-2); border-radius: 14px; }
 .sig .l { font-size: 13px; font-weight: 700; color: var(--text-sub); }
-.sig .m { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-top: 1px solid var(--line); }
+.sig .m { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+.sig .mk { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.sig .pr { font-size: 14.5px; font-weight: 700; color: var(--accent); }
+.sig .say {
+  flex: none; width: 42px; height: 42px; border: 0; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: #fff; -webkit-tap-highlight-color: transparent;
+}
+.sig .say .ico { width: 22px; height: 22px; }
+.sig .say.playing { box-shadow: 0 0 0 4px rgba(37, 99, 235, .3); }
+.phrase-speak.playing { opacity: .85; }
 .sig .l + .m { border-top: 0; }
 .sig .ko { font-size: 15.5px; font-weight: 600; min-width: 0; }
 .sig .zh { flex: none; font-size: 20px; font-weight: 800; letter-spacing: 0;

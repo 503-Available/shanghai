@@ -414,7 +414,7 @@
   }
 
   // ---------- 11-1. 출발 전 준비 (예약 탭 맨 위, 접힌 카드) ----------
-  var PREP_ICON = { 'p-visa': 'file', 'p-alipay': 'yen', 'p-didi': 'car', 'p-amap': 'nav', 'p-wifi': 'pulse', 'p-app': 'refresh', 'p-install': 'check', 'p-parents': 'bulb' };
+  var PREP_ICON = { 'p-visa': 'file', 'p-arrival': 'file', 'p-voice': 'volume', 'p-alipay': 'yen', 'p-didi': 'car', 'p-amap': 'nav', 'p-wifi': 'pulse', 'p-app': 'refresh', 'p-install': 'check', 'p-parents': 'bulb' };
   function renderPrep() {
     var prep = trip.prep || [];
     if (!prep.length) return '';
@@ -531,10 +531,14 @@
       '<div class="a" lang="zh-CN">' + esc(p.addressZh) + '</div></div>' : '';
     var q = p.map || p.nameZh || p.name;
     // 대표 메뉴: 주문할 때 직원에게 보여 주도록 중국어 메뉴명을 함께 표시
+    // 메뉴마다 한글 발음과 듣기 버튼
     var sig = p.signature ? '<div class="sig"><div class="l">대표 메뉴 · 주문할 때 직원에게 보여 주세요</div>' +
       p.signature.map(function (s) {
-        return '<div class="m"><span class="ko">' + esc(s.name) + '</span><span class="zh" lang="zh-CN">' + esc(s.zh) + '</span></div>';
-      }).join('') + '</div>' : '';
+        return '<div class="m"><span class="mk"><span class="ko">' + esc(s.name) + '</span>' +
+          (s.pron ? '<span class="pr">' + esc(s.pron) + '</span>' : '') + '</span>' +
+          '<span class="zh" lang="zh-CN">' + esc(s.zh) + '</span>' +
+          '<button class="say" data-speak="' + esc(s.zh) + '" aria-label="' + esc(s.name) + ' 중국어로 듣기">' + icon('volume') + '</button></div>';
+      }).join('') + '</div><p class="speak-msg" role="status" hidden></p>' : '';
 
     sheet.innerHTML = '<div class="grabber"></div>' +
       '<div class="sheet-head">' + tile(p.category) + '<div><h2>' + esc(p.name) + '</h2>' +
@@ -577,35 +581,87 @@
       '<div class="n" lang="zh-CN">' + esc(p.zh) + '</div></div>' +
       (p.pron ? '<div class="phrase-pron"><span class="l">한글 발음</span>' + esc(p.pron) + '</div>' : '') +
       '<p class="phrase-ko">' + esc(p.ko) + '</p>' +
-      '<button class="btn primary phrase-speak" data-speak="' + esc(p.zh) + '">' + icon('volume') + '중국어로 듣기</button>' +
-      '<p class="speak-msg" hidden>이 휴대폰에서는 중국어 음성을 쓸 수 없어요. 한글 발음을 읽거나 이 화면을 보여 주세요.</p>' +
+      '<button class="btn primary phrase-speak" data-speak="' + esc(p.zh) + '">' + icon('volume') + '<span class="say-label">중국어로 듣기</span></button>' +
+      '<p class="speak-msg" role="status" hidden></p>' +
       '<button class="btn close" data-close>닫기</button>';
     showSheet();
   }
-  // 중국어 카드 소리 내어 읽기 (휴대폰에 내장된 중국어 음성 사용)
+  // ---------- 중국어 소리 내어 읽기 (휴대폰에 내장된 중국어 음성, Web Speech API) ----------
   var SPEECH_OK = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
-  var currentSpeech = null;   // 일부 브라우저에서 읽는 도중 끊기지 않게 참조를 유지
+  var speech = { id: 0, playing: false, btn: null, utterance: null, timer: null };
   if (SPEECH_OK) window.speechSynthesis.getVoices();   // 음성 목록을 미리 불러옴
-  function speakZh(text) {
+  function isZhVoice(v) { return /^(zh|cmn)[-_]?(CN|Hans)?/i.test(v.lang) && !/(TW|HK|Hant)/i.test(v.lang); }
+  function setPlaying(btn, on) {
+    if (!btn) return;
+    btn.classList.toggle('playing', on);
+    var l = btn.querySelector('.say-label');
+    if (l) l.textContent = on ? '재생 중… (누르면 중지)' : '중국어로 듣기';
+  }
+  function finishSpeech() {
+    speech.playing = false;
+    clearTimeout(speech.timer);
+    setPlaying(speech.btn, false);
+    speech.btn = null;
+  }
+  function stopSpeech() {
+    speech.id++;                         // 진행 중이던 음성의 결과는 무시
+    finishSpeech();
+    if (SPEECH_OK) window.speechSynthesis.cancel();
+  }
+  // 재생 실패: 원인과 대신 할 방법을 보여 줌
+  function speechFailed(code) {
+    finishSpeech();
     var msg = sheet.querySelector('.speak-msg');
-    function fail() { if (msg) msg.hidden = false; }
-    if (msg) msg.hidden = true;
-    if (!SPEECH_OK) { fail(); return; }   // 음성 기능이 없는 브라우저는 안내만 표시
+    if (!msg) return;
+    var voices = SPEECH_OK ? window.speechSynthesis.getVoices() : [];
+    var zh = voices.filter(isZhVoice).length;
+    msg.textContent = (!SPEECH_OK ? '이 브라우저는 음성 기능을 지원하지 않아요.'
+      : zh ? '소리를 내지 못했어요. 볼륨과 무음 모드를 확인해 주세요.'
+      : '이 휴대폰에서 중국어 음성을 찾지 못했어요. 출발 전 준비의 "중국어 음성 받기"를 확인해 주세요.') +
+      ' 그동안은 한글 발음을 읽거나 화면을 보여 주세요. (원인: ' + code + ' · 음성 ' + voices.length + '개 · 중국어 ' + zh + '개)';
+    msg.hidden = false;
+  }
+  function startSpeech(text, btn) {
     var synth = window.speechSynthesis;
-    var voices = synth.getVoices();
-    var zh = voices.filter(function (v) { return /^(zh|cmn)[-_](CN|Hans)/i.test(v.lang); })[0];
-    if (voices.length && !zh) { fail(); return; }   // 목록을 불러왔는데 중국어 음성이 없음
-    synth.cancel();
+    var id = ++speech.id;
+    var zh = synth.getVoices().filter(isZhVoice)[0];
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'zh-CN';
-    u.rate = 0.85;    // 알아듣기 쉽게 조금 천천히
+    u.rate = 0.85;                       // 알아듣기 쉽게 조금 천천히
+    u.volume = 1;
     if (zh) u.voice = zh;
-    u.onerror = function (e) { if (e.error !== 'canceled' && e.error !== 'interrupted') fail(); };
-    currentSpeech = u;
+    var started = false;
+    u.onstart = function () { if (id !== speech.id) return; started = true; clearTimeout(speech.timer); };
+    u.onend = function () {
+      if (id !== speech.id) return;
+      if (started) finishSpeech(); else speechFailed('no-audio');
+    };
+    u.onerror = function (e) { if (id === speech.id) speechFailed(e.error || 'error'); };
+    speech.utterance = u;                // 재생 중 메모리에서 지워지지 않게 보관
+    speech.playing = true;
+    speech.btn = btn;
+    setPlaying(btn, true);
+    speech.timer = setTimeout(function () {
+      if (id === speech.id && !started) { synth.cancel(); speechFailed('no-start'); }
+    }, 4000);
+    if (synth.paused) synth.resume();
     synth.speak(u);
   }
+  function speakZh(text, btn) {
+    var msg = sheet.querySelector('.speak-msg');
+    if (msg) msg.hidden = true;
+    if (!SPEECH_OK) { speechFailed('unsupported'); return; }
+    var synth = window.speechSynthesis;
+    var same = speech.playing && speech.btn === btn;
+    var busy = speech.playing || synth.speaking || synth.pending;
+    if (speech.playing) stopSpeech();
+    if (same) return;                    // 재생 중인 버튼을 다시 누르면 중지
+    // speak 직전에 cancel 하면 새 음성까지 취소되는 브라우저가 있어, 이전 음성이 있을 때만 간격을 둠
+    if (busy) { synth.cancel(); setTimeout(function () { startSpeech(text, btn); }, 150); }
+    else startSpeech(text, btn);
+  }
   function closeSheet() {
-    if (SPEECH_OK) window.speechSynthesis.cancel();   // 창을 닫으면 읽기도 멈춤
+    stopSpeech();                        // 창을 닫으면 읽기도 멈춤
     sheet.classList.remove('zoomed');   // 크게 보기 상태가 다음 장소로 이어지지 않게
     sheet.hidden = true; backdrop.hidden = true;
     document.body.style.overflow = '';
@@ -694,7 +750,7 @@
     if (e.target.closest('[data-close]')) closeSheet();
     if (e.target.closest('[data-reload]')) location.reload();
     var sp = e.target.closest('[data-speak]');
-    if (sp) speakZh(sp.dataset.speak);
+    if (sp) speakZh(sp.dataset.speak, sp);
     var z = e.target.closest('[data-zoom]');
     if (z) toggleZoom(z);
   });

@@ -47,6 +47,7 @@ foreach ($p in $trip.places) {
   foreach ($s in $p.signature) {
     if (-not $s.name -or -not $s.zh) { Err "place $($p.id): signature needs name and zh" }
     elseif ($s.zh -match $hangul) { Err "place $($p.id): signature zh contains Korean ($($s.zh))" }
+    if (-not $s.pron -or $s.pron -notmatch $hangul) { Err "place $($p.id): signature needs Korean pron ($($s.zh))" }
   }
   if ($p.reservation -and ($validResv -notcontains $p.reservation)) { Err "place $($p.id): bad reservation '$($p.reservation)'" }
   if ($p.tel -and ($p.tel -notmatch '^[0-9\-]+$')) { Err "place $($p.id): bad tel '$($p.tel)'" }
