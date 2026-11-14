@@ -60,11 +60,15 @@
       "rain": ["투어 진행 여부는 바우처 연락처와 가이드 안내를 먼저 확인", "우산과 미끄럼 방지 신발 챙기기 · 돌길과 돌다리는 부모님과 천천히", "비가 오면 실내 위주로: 초목 염색 공방, 목심미술관 (월요일 휴관 · 일요일은 개관)"],
       "weather": { "place": "우전", "lat": 30.7457, "lon": 120.4876, "normalHigh": 11, "normalLow": 3 },
       "items": [
-        { "time": "07:30", "type": "food", "title": "아침: 호텔 조식", "placeId": "hotel" },
-        { "time": "08:30", "type": "tour", "title": "투어 집합 (시간 확정 예정)", "placeId": "tour", "reservation": "done", "note": "집합 시간·장소는 바우처로 확인" },
-        { "time": "10:30", "type": "tour", "title": "우전 시자 (서쪽 마을)", "placeId": "wuzhen", "note": "이후 시간은 예상치 · 가이드 안내 우선" },
-        { "time": "18:30", "type": "move", "title": "상하이 도착 (예상)" },
-        { "time": "19:00", "type": "food", "title": "저녁: 카오위 (생선구이)", "placeId": "kaoyu", "note": "지점은 투어 도착 장소를 보고 확정 · 마늘 맛으로 주문" }
+        { "time": "10:00", "type": "food", "title": "오전: 브런치 · 가벼운 산책 (장소 확정 예정)", "note": "호텔 조식 없음 · 모임 장소 근처에서" },
+        { "time": "12:45", "type": "tour", "title": "투어 모임: 그랜드센트럴호텔", "placeId": "gch", "reservation": "done", "note": "13:00 출발 · 12:30까지 도착하면 여유 있어요" },
+        { "time": "13:00", "type": "tour", "title": "버스 출발 → 우전", "placeId": "tour", "note": "약 1시간 30분" },
+        { "time": "14:30", "type": "tour", "title": "우전 둥자 (동쪽 마을)", "placeId": "dongzha", "note": "운하 유람선 포함 · 약 1시간 30분" },
+        { "time": "16:00", "type": "tour", "title": "우전 시자 (서쪽 마을)", "placeId": "wuzhen", "note": "약 3시간 · 해 질 무렵부터 조명이 켜져요" },
+        { "time": "18:00", "type": "food", "title": "저녁: 시자 안 식당", "note": "포함 여부는 바우처 확인 · 우전 명물은 홍사오 양고기(간장 양고기 조림)" },
+        { "time": "20:00", "type": "tour", "title": "집결 → 상하이로 출발", "placeId": "tour", "note": "약 1시간 30분 · 늦지 않게 집결 장소 미리 확인" },
+        { "time": "22:00", "type": "tour", "title": "그랜드센트럴호텔 도착 · 해산", "placeId": "gch" },
+        { "time": "22:10", "type": "move", "title": "호텔로", "note": "DiDi 6인승 · 약 20분 (터널 지나 푸둥)" }
       ]
     },
     {
@@ -235,10 +239,24 @@
 
     {
       "id": "tour", "category": "transport", "name": "우전 수향마을 일일투어", "nameZh": "乌镇一日游",
-      "area": "상하이 출발 (집합 장소는 바우처 확인)",
-      "map": "乌镇西栅",
-      "tip": "집합 시간·장소·도착 장소는 바우처로 확인 · 점심 포함 여부 확인 · 상하이에서 버스로 약 2시간",
+      "area": "그랜드센트럴호텔 모임 · 해산",
+      "map": "乌镇东栅",
+      "tip": "12:45 모임 · 13:00 출발 → 둥자(유람선 포함) → 시자 → 20:00 집결 → 22:00 해산 · 버스로 편도 약 1시간 30분 · 저녁 포함 여부는 바우처 확인",
       "reservation": "done"
+    },
+    {
+      "id": "gch", "category": "transport", "name": "그랜드센트럴호텔 (투어 모임 장소)", "nameZh": "上海大酒店 Grand Central Hotel",
+      "area": "난징둥루", "address": "황푸구 주장루 505호",
+      "addressZh": "上海市黄浦区九江路505号",
+      "map": "九江路505号",
+      "tip": "지하철 2·10호선 난징둥루역에서 도보 약 3분 · 난징둥루 보행가 바로 옆 · 중국어 호텔 이름은 표기가 여러 가지라 주소로 찾는 게 정확해요"
+    },
+    {
+      "id": "dongzha", "category": "sight", "name": "우전 둥자 (동쪽 마을)", "nameZh": "乌镇东栅",
+      "area": "우전 (투어)", "address": "저장성 퉁샹시 우전",
+      "addressZh": "浙江省桐乡市乌镇 东栅景区",
+      "map": "乌镇东栅",
+      "tip": "주민이 실제로 사는 옛 마을 · 투어에 운하 유람선 포함 · 돌다리와 돌길이 미끄러우니 편한 신발"
     },
     {
       "id": "wuzhen", "category": "sight", "name": "우전 시자 (서쪽 마을)", "nameZh": "乌镇西栅",
@@ -302,7 +320,7 @@
   "reservations": [
     { "id": "r-flight", "title": "대한항공 왕복", "when": "12/11 08:25 출발 · 12/14 14:00 귀국", "status": "done", "placeId": "pvg" },
     { "id": "r-hotel", "title": "디 이튼 호텔 상하이 (3박)", "when": "12/11 ~ 12/14", "status": "done", "placeId": "hotel" },
-    { "id": "r-tour", "title": "우전 수향마을 일일투어", "when": "12/13 (집합 시간 확인 예정)", "status": "done", "placeId": "tour", "how": "집합 장소는 바우처로 확인" },
+    { "id": "r-tour", "title": "우전 수향마을 일일투어", "when": "12/13 12:45 모임 · 13:00 출발 · 22:00 해산", "status": "done", "placeId": "gch", "how": "모임·해산: 그랜드센트럴호텔" },
     { "id": "r-pickup", "title": "공항 픽업 6~7인승 (5인 · 캐리어 4개)", "when": "12/11 09:45 도착편", "status": "required", "placeId": "pickup", "how": "클룩 · 트립닷컴" },
     { "id": "r-didi", "title": "DiDi 6인승 호텔 → 공항", "when": "12/14 10:30", "status": "recommended", "placeId": "didi", "how": "전날 밤 알리페이 DiDi에서 예약" },
     { "id": "r-duck", "title": "사계민복 베이징덕 (5인)", "when": "12/11 12:30", "status": "recommended", "placeId": "sijiminfu", "how": "따중뎬핑 앱 또는 호텔 컨시어지에 부탁" },
