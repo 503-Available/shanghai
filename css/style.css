@@ -383,6 +383,15 @@ details[open].card summary .chev { transform: rotate(90deg); }
   -webkit-tap-highlight-color: transparent;
 }
 
+/* 둘 중 고르는 일정: 후보 가게 버튼 */
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.choice {
+  display: inline-flex; align-items: center; gap: 2px; min-height: 40px; padding: 0 10px 0 14px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--text);
+  font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.choice .ico { color: var(--text-faint); }
+
 /* ---------- 16. 상하이 추가: 여행 중 도구 (중국어 카드 · 환산) ---------- */
 .tool summary .tile { width: 34px; height: 34px; border-radius: 10px; }
 .tool .prep-sum { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }

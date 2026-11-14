@@ -77,6 +77,10 @@ foreach ($d in $trip.days) {
       if (-not $placeIds.ContainsKey($it.placeId)) { Err "day $($d.label) $($it.time): unknown placeId '$($it.placeId)'" }
       else { $usedPlaces[$it.placeId] = $true }
     }
+    foreach ($c in $it.choices) {
+      if (-not $placeIds.ContainsKey($c.placeId)) { Err "day $($d.label) $($it.time): unknown choice placeId '$($c.placeId)'" }
+      else { $usedPlaces[$c.placeId] = $true }
+    }
     if ($it.reservation -and ($validResv -notcontains $it.reservation)) { Err "day $($d.label) $($it.time): bad reservation '$($it.reservation)'" }
   }
 }

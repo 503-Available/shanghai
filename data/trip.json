@@ -19,13 +19,13 @@
         { "time": "09:45", "type": "flight", "title": "푸둥공항 도착", "placeId": "pvg", "note": "입국 심사 약 1시간 · 내리면 와이파이 도시락부터 켜기" },
         { "time": "11:00", "type": "move", "title": "예약 픽업 차량 → 호텔", "placeId": "pickup", "reservation": "required", "note": "약 50분 · 기사님이 이름 피켓 들고 도착장에서 대기" },
         { "time": "12:00", "type": "hotel", "title": "호텔에 짐 맡기기", "placeId": "hotel", "reservation": "done" },
-        { "time": "12:30", "type": "food", "title": "점심: 베이징덕", "placeId": "sijiminfu", "reservation": "recommended", "note": "호텔에서 차로 약 10분" },
-        { "time": "14:00", "type": "sight", "title": "동방명주", "placeId": "pearl", "note": "정대광장에서 도보 약 5분" },
+        { "time": "12:30", "type": "food", "title": "점심: 둘 중 골라요", "choices": [{ "placeId": "sijiminfu", "label": "베이징덕 · 사계민복" }, { "placeId": "waipojia", "label": "외할머니집" }], "note": "사계민복은 호텔에서 차로 약 10분 · 외할머니집은 강 건너 약 20분" },
+        { "time": "14:00", "type": "sight", "title": "동방명주", "placeId": "pearl", "note": "사계민복에서 도보 약 5분 · 외할머니집에서 차로 약 20분" },
         { "time": "15:30", "type": "hotel", "title": "체크인 · 휴식", "placeId": "hotel" },
         { "time": "17:30", "type": "move", "title": "와이탄으로 이동", "note": "DiDi 6인승 · 강 건너 약 15분" },
         { "time": "18:00", "type": "sight", "title": "와이탄 야경", "placeId": "bund", "note": "겨울엔 18:00 점등 · 강바람이 차가워요" },
-        { "time": "19:00", "type": "sight", "title": "난징루 보행가", "placeId": "nanjing" },
-        { "time": "19:45", "type": "food", "title": "저녁: 외할머니집 (항저우 가정식)", "placeId": "waipojia", "note": "난징루에서 차로 약 10분" },
+        { "time": "19:00", "type": "sight", "title": "난징루 보행가", "placeId": "nanjing", "note": "와이탄에서 인민광장 쪽으로 걸으며 구경 · 저녁 식당까지 약 25분" },
+        { "time": "19:45", "type": "food", "title": "저녁: 카오위 (생선구이)", "placeId": "kaoyu", "note": "보행가 서쪽 끝 스마오광장 4층 · 마늘 맛으로 주문" },
         { "time": "21:15", "type": "move", "title": "호텔로", "note": "DiDi 6인승 · 약 20분" }
       ]
     },
@@ -60,7 +60,11 @@
       "rain": ["투어 진행 여부는 바우처 연락처와 가이드 안내를 먼저 확인", "우산과 미끄럼 방지 신발 챙기기 · 돌길과 돌다리는 부모님과 천천히", "비가 오면 실내 위주로: 초목 염색 공방, 목심미술관 (월요일 휴관 · 일요일은 개관)"],
       "weather": { "place": "우전", "lat": 30.7457, "lon": 120.4876, "normalHigh": 11, "normalLow": 3 },
       "items": [
-        { "time": "10:00", "type": "food", "title": "오전: 브런치 · 가벼운 산책 (장소 확정 예정)", "note": "호텔 조식 없음 · 모임 장소 근처에서" },
+        { "time": "09:30", "type": "move", "title": "숙소 출발 → 더싱관", "note": "DiDi 6인승 · 강 건너 약 20분 · 호텔 조식 없음" },
+        { "time": "10:00", "type": "food", "title": "브런치: 상하이 국수", "placeId": "dexingguan", "note": "1878년부터 이어 온 노포" },
+        { "time": "11:00", "type": "sight", "title": "상하이박물관 인민광장관", "placeId": "shmuseum", "note": "더싱관에서 차로 약 5분 · 무료 · 여권 지참" },
+        { "time": "11:50", "type": "sight", "title": "인민공원 산책", "placeId": "peoplespark", "note": "박물관 바로 옆 · 일요일이라 맞선 시장 구경" },
+        { "time": "12:15", "type": "move", "title": "걸어서 모임 장소로", "note": "약 11분" },
         { "time": "12:45", "type": "tour", "title": "투어 모임: 그랜드센트럴호텔", "placeId": "gch", "reservation": "done", "note": "13:00 출발 · 12:30까지 도착하면 여유 있어요" },
         { "time": "13:00", "type": "tour", "title": "버스 출발 → 우전", "placeId": "tour", "note": "약 1시간 30분" },
         { "time": "14:30", "type": "tour", "title": "우전 둥자 (동쪽 마을)", "placeId": "dongzha", "note": "운하 유람선 포함 · 약 1시간 30분" },
@@ -266,12 +270,35 @@
       "tip": "운하를 따라 옛집이 늘어선 물의 마을 · 나룻배 타기 추천 · 돌다리와 돌길이 미끄러우니 편한 신발 · 저녁 조명이 아름다워요"
     },
     {
-      "id": "kaoyu", "category": "food", "name": "장볜청와이 카오위 (지점 확정 예정)", "nameZh": "江边城外烤鱼",
+      "id": "kaoyu", "category": "food", "name": "장볜청와이 카오위 스마오광장점", "nameZh": "江边城外烤全鱼 世茂广场店",
       "signature": [{ "name": "마늘 카오위", "zh": "蒜香烤鱼" }, { "name": "감자 (사이드)", "zh": "土豆" }],
-      "area": "투어 도착 장소 근처",
+      "area": "난징둥루 보행가 서쪽 끝 · 스마오광장 4층", "address": "황푸구 난징둥루 829호 스마오광장 4층",
+      "addressZh": "上海市黄浦区南京东路829号 世茂广场 4楼",
       "price": "1인 약 80~100위안",
-      "map": "江边城外烤鱼",
-      "tip": "생선을 통째로 구워 국물 자작한 철판에 · 이 체인의 대표 맛은 대부분 매워요(마라·향라) → 마늘 맛(蒜香)으로 주문 · 안 맵게 되는지는 주문할 때 직원에게 확인 · 대안: 탄위(探鱼) 푸둥 지점"
+      "map": "江边城外 世茂广场",
+      "tip": "생선을 통째로 구워 국물 자작한 철판에 · 이 체인의 대표 맛은 대부분 매워요(마라·향라) → 마늘 맛(蒜香)으로 주문 · 안 맵게 되는지는 주문할 때 직원에게 확인 · 영업 여부와 층수는 출발 전 고덕지도로 확인 · 대안: 탄위(探鱼)"
+    },
+    {
+      "id": "dexingguan", "category": "food", "name": "더싱관 광둥루 본점", "nameZh": "德兴馆 广东路店",
+      "signature": [{ "name": "먼러우 국수 (돼지고기 조림 국수)", "zh": "焖肉面" }, { "name": "먼티 국수 (돼지 족 조림 국수)", "zh": "焖蹄面" }],
+      "area": "난징둥루 남쪽 · 모임 장소에서 도보 약 10분", "address": "황푸구 광둥루 471호",
+      "addressZh": "上海市黄浦区广东路471号 德兴馆",
+      "map": "德兴馆 广东路",
+      "tip": "1878년부터 이어 온 상하이 국수 노포 · 미쉐린 가이드 소개 · 1층은 국수와 간식, 2층은 요리 · 아침 6:30부터 영업(후기 기준) · 고명이 짤 수 있어요"
+    },
+    {
+      "id": "shmuseum", "category": "sight", "name": "상하이박물관 인민광장관", "nameZh": "上海博物馆 人民广场馆",
+      "area": "인민광장", "address": "황푸구 런민다다오 201호",
+      "addressZh": "上海市黄浦区人民大道201号 上海博物馆",
+      "map": "上海博物馆 人民广场馆",
+      "tip": "무료 · 9:00~17:00 (16:00 입장 마감) · 월요일 휴관 · 2025년 9월부터 개인은 예약 없이 입장 시범 중, 인기 특별전은 예약 필요할 수 있어 출발 전 확인 · 여권 지참 · 남문 보안 검색 · 청동기·도자기관 추천"
+    },
+    {
+      "id": "peoplespark", "category": "sight", "name": "인민공원", "nameZh": "人民公园",
+      "area": "인민광장", "address": "황푸구 난징시루 231호",
+      "addressZh": "上海市黄浦区南京西路231号 人民公园",
+      "map": "人民公园 上海",
+      "tip": "도심 속 정원 산책 · 주말이면 부모들이 자녀의 맞선 상대를 찾는 '맞선 시장'이 열려요 · 사진은 조심스럽게"
     },
     {
       "id": "breakfast", "category": "food", "name": "호텔 근처 아침 (생젠 · 더우장)", "nameZh": "生煎 豆浆 早餐",
@@ -305,6 +332,7 @@
     { "id": "f-xlb", "name": "샤오롱바오", "placeIds": ["nanxiang"] },
     { "id": "f-yangrou", "name": "양꼬치", "placeIds": ["henjiu"] },
     { "id": "f-kaoyu", "name": "카오위 (생선구이)", "placeIds": ["kaoyu"] },
+    { "id": "f-noodle", "name": "상하이 국수 브런치", "placeIds": ["dexingguan"] },
     { "id": "f-shengjian", "name": "생젠 · 더우장 아침", "placeIds": ["breakfast"] }
   ],
 
@@ -323,7 +351,7 @@
     { "id": "r-tour", "title": "우전 수향마을 일일투어", "when": "12/13 12:45 모임 · 13:00 출발 · 22:00 해산", "status": "done", "placeId": "gch", "how": "모임·해산: 그랜드센트럴호텔" },
     { "id": "r-pickup", "title": "공항 픽업 6~7인승 (5인 · 캐리어 4개)", "when": "12/11 09:45 도착편", "status": "required", "placeId": "pickup", "how": "클룩 · 트립닷컴" },
     { "id": "r-didi", "title": "DiDi 6인승 호텔 → 공항", "when": "12/14 10:30", "status": "recommended", "placeId": "didi", "how": "전날 밤 알리페이 DiDi에서 예약" },
-    { "id": "r-duck", "title": "사계민복 베이징덕 (5인)", "when": "12/11 12:30", "status": "recommended", "placeId": "sijiminfu", "how": "따중뎬핑 앱 또는 호텔 컨시어지에 부탁" },
+    { "id": "r-duck", "title": "사계민복 베이징덕 (5인)", "when": "12/11 12:30 · 점심을 베이징덕으로 고를 때", "status": "recommended", "placeId": "sijiminfu", "how": "따중뎬핑 앱 또는 호텔 컨시어지에 부탁" },
     { "id": "r-pearl", "title": "동방명주 입장권", "when": "12/11 14:00", "status": "recommended", "placeId": "pearl", "how": "클룩 · 트립닷컴 온라인 구매" },
     { "id": "r-henjiu", "title": "헌지우이치엔 양꼬치 대기 등록", "when": "12/12 18:00 무렵", "status": "recommended", "placeId": "henjiu", "how": "예원에서 위챗 미니프로그램으로 대기 등록" }
   ],

@@ -318,10 +318,15 @@
       var cls = [];
       if (isToday && i === curIdx) cls.push('is-now');
       if (isToday && i < curIdx) cls.push('is-past');
+      // 둘 중 고르는 일정: 후보 가게를 각각 누를 수 있는 버튼으로 표시
+      var choices = (it.choices || []).filter(function (c) { return placeById[c.placeId]; }).map(function (c) {
+        return '<button class="choice" data-place="' + esc(c.placeId) + '">' + esc(c.label || placeById[c.placeId].name) + icon('chev', 'sm') + '</button>';
+      }).join('');
       return row({
         cls: cls.join(' '), place: it.placeId,
         lead: '<span class="time">' + esc(it.time) + '</span>' + tile(it.type),
-        title: esc(it.title), sub: it.note ? esc(it.note) : '', extra: badge(it.reservation)
+        title: esc(it.title), sub: it.note ? esc(it.note) : '',
+        extra: badge(it.reservation) + (choices ? '<span class="choices">' + choices + '</span>' : '')
       });
     }).join('') + '</ul>';
 
@@ -338,11 +343,17 @@
   function renderFood() {
     var seen = {};
     return trip.days.map(function (d) {
-      var rows = d.items.filter(function (it) {
-        var p = placeById[it.placeId];
+      // 일정 하나에 후보가 둘이면(choices) 두 가게 모두 목록에 표시
+      var pairs = [];
+      d.items.forEach(function (it) {
+        var ids = it.choices ? it.choices.map(function (c) { return c.placeId; }) : [it.placeId];
+        ids.forEach(function (id) { pairs.push({ it: it, id: id }); });
+      });
+      var rows = pairs.filter(function (x) {
+        var p = placeById[x.id];
         return p && p.category === 'food' && !seen[p.id] && (seen[p.id] = true);
-      }).map(function (it) {
-        var p = placeById[it.placeId];
+      }).map(function (x) {
+        var it = x.it, p = placeById[x.id];
         var foods = trip.foodList.filter(function (f) { return (f.placeIds || []).indexOf(p.id) >= 0; })
           .map(function (f) { return f.name; });
         var what = p.signature ? '대표 메뉴 · ' + p.signature.map(function (s) { return s.name; }).join(', ') : foods.length ? foods.join(', ') : it.title.replace(/^[^:]*:\s*/, '');
